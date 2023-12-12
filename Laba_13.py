@@ -4,20 +4,15 @@
 import csv
 
 
-m_and_w = []
-with open('test.csv', newline='') as File:
-    reader = csv.reader(File)
-    for r in reader:
-        if (r[3] == 'female' or r[3] == 'male') and r[10] == 'Q':
-            m_and_w.append(r[0])
-
+m_and_w = 0
 survived = 0
-with open('gender_submission.csv', newline='') as File:
+with open('titanic.csv', newline='') as File:
     reader = csv.reader(File)
     for r in reader:
-        for i in m_and_w:
-            if r[0] == i and r[1] == '1':
+        if (r[4] == 'female' or r[4] == 'male') and r[11] == 'Q':
+            m_and_w += 1
+            if r[1] == '1':
                 survived += 1
 
-print('количество мужчин и женщин, севших в порту Квинстаун: ' + str(len(m_and_w)))
+print('количество мужчин и женщин, севших в порту Квинстаун: ' + str(m_and_w))
 print('количество выживших мужчин и женщин, севших в порту Квинстаун: ' + str(survived))
